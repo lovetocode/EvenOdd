@@ -23,8 +23,8 @@ EvenOddPresenter >> compute: anObject [
 
 { #category : #initialization }
 EvenOddPresenter >> connectPresenters [ 
-    number whenSubmitDo: [:t | ((t asInteger) % 2 == 0)ifTrue: [ self inform:'The number is even']. 
-	((t asInteger) % 2 == 0)ifFalse: [ self inform: 'The number is odd' ] ]
+    number  whenSubmitDo:   [:t | ((t asInteger) % 2 == 0)ifTrue: [ self storedNumber: ' is even']. 
+	((t asInteger) % 2 == 0)ifFalse: [ self storedNumber:  ' is odd' ] . compute  text: number text, storedNumber ].
 ]
 
 { #category : #layout }
@@ -39,10 +39,15 @@ EvenOddPresenter >> defaultLayout [
 
 { #category : #initialization }
 EvenOddPresenter >> initializePresenters [ 
+  
   "To run execute EvenOddPresenter new open"
   number := self newTextInput. 
-  compute := self newButton label: 'Compute'
-   
+  compute := self newText. 
+  compute beNotEditable. 
+ 
+  
+ 
+  
 ]
 
 { #category : #accessing }
@@ -55,6 +60,18 @@ EvenOddPresenter >> number [
 EvenOddPresenter >> number: anObject [
 
 	number := anObject
+]
+
+{ #category : #accessing }
+EvenOddPresenter >> storedNumber [
+
+	^ storedNumber
+]
+
+{ #category : #accessing }
+EvenOddPresenter >> storedNumber: anObject [
+
+	storedNumber := anObject
 ]
 
 { #category : #accessing }
